@@ -14,7 +14,7 @@ const InputField = ({ title, changeTitle, guide, changeGuide }) => {
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor="guide">Guide</label>
+        <label htmlFor="guide">Subtitle</label>
         <input
           type="text"
           id="guide"
