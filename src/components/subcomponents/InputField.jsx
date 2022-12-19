@@ -6,6 +6,7 @@ const InputField = ({ title, changeTitle, guide, changeGuide }) => {
       <div className={styles.inputContainer}>
         <label htmlFor="title">Title</label>
         <input
+          placeholder="Enter your title"
           type="text"
           id="title"
           name="title"
@@ -16,6 +17,7 @@ const InputField = ({ title, changeTitle, guide, changeGuide }) => {
       <div className={styles.inputContainer}>
         <label htmlFor="guide">Subtitle</label>
         <input
+          placeholder="Enter your subtitle"
           type="text"
           id="guide"
           name="guide"
