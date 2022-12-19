@@ -1,0 +1,30 @@
+@import './variables';
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 774px
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 100%;
+    label {
+        font-weight: 400;
+        color: var(--cloudburst-sheer);
+    }
+    input {
+        all: unset;
+        padding: .5rem 1rem;
+        border-radius: 4px;
+        background-color: var(--white);
+        border: 1px solid var(--sterling);
+        transition: all .3s ease;
+        &:focus {
+            border: 1px solid var(--shakespeare);
+        }
+    }
+}

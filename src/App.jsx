@@ -1,34 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import Reports from "./components/Reports";
+import ThemeToggle from "./components/subcomponents/ThemeToggle";
+import InputField from "./components/subcomponents/InputField"
+import styles from "./styles/App.module.scss";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [guide, setGuide] = useState("guide");
+  const [title, setTitle] = useState("Article title goes here lorem ipsum dolor");
+  const [theme, setTheme] = useState("light");
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className={styles.mainContainer}>
+        <ThemeToggle value={theme} onChange={setTheme} />
+        <div className={styles.previewContainer}>
+          <Reports theme={theme} title={title} guide={guide} />
+        </div>
+        <InputField title={title} changeTitle={setTitle} guide={guide} changeGuide={setGuide} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
