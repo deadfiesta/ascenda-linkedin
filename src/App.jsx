@@ -18,7 +18,7 @@ function App() {
   const [theme, setTheme] = useState("light");
   const [open, setOpen] = useState(false);
 
-  const [imgSrc, setImgSrc] = useState("/01.jpg");
+  const [imgSrc, setImgSrc] = useState("./01.jpg");
 
   const capture = () => {
     html2canvas(captureRef.current, {
