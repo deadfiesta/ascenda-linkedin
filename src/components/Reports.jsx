@@ -1,8 +1,8 @@
-import AscendaLogo from "./subcomponents/AscendaLogo";
+import AscendaLogo from "./subcomponents/LogoAscenda";
 import styles from "../styles/Reports.module.scss";
 import CircleArrow from "./subcomponents/CircleArrow";
 
-const Reports = ({ style, theme, title, guide }) => {
+const Reports = ({ style, theme, title, guide, image }) => {
   switch (style) {
     default:
     case 1:
@@ -11,7 +11,7 @@ const Reports = ({ style, theme, title, guide }) => {
           <div className={styles.wrapper}>
             <AscendaLogo />
             <div className={styles.contentContainer}>
-              <div className={styles.imageContainer} />
+              <div className={styles.imageContainer} style={{ backgroundImage: `url(${image})` }} />
               <div className={styles.textContainer}>
                 <div className={styles.guide}>{guide}</div>
                 <h3>{title}</h3>
@@ -33,4 +33,5 @@ Reports.defaultProps = {
   style: 1,
   title: "Article title goes here lorem ipsum dolor",
   guide: "guide",
+  imgSrc: "./01.jpg"
 };

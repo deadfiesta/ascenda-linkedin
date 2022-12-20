@@ -2,7 +2,7 @@ import styles from "../../styles/InputField.module.scss";
 
 const InputField = ({ title, changeTitle, guide, changeGuide }) => {
   return (
-    <div className={styles.formContainer}>
+    <form className={styles.formContainer}>
       <div className={styles.inputContainer}>
         <label htmlFor="title">Title</label>
         <input
@@ -25,7 +25,7 @@ const InputField = ({ title, changeTitle, guide, changeGuide }) => {
           onChange={(e) => changeGuide(e.target.value)}
         />
       </div>
-    </div>
+    </form>
   );
 };
 

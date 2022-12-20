@@ -1,31 +1,70 @@
-@import './variables';
+@import "./variables";
 
 .formContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 774px
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 774px;
+}
+
+.iconContainer {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    background-color: var(--cloudburst-deep);
+}
+
+.label {
+  font-weight: 400;
+  color: var(--cloudburst-sheer);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
-    width: 100%;
-    label {
-        font-weight: 400;
-        color: var(--cloudburst-sheer);
+  @extend .form;
+  label {
+    @extend .label;
+  }
+  input {
+    all: unset;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--white);
+    border: 1px solid var(--sterling);
+    transition: all 0.3s ease;
+    &:focus {
+      border: 1px solid var(--shakespeare);
     }
-    input {
-        all: unset;
-        padding: .5rem 1rem;
-        border-radius: 4px;
-        background-color: var(--white);
-        border: 1px solid var(--sterling);
-        transition: all .3s ease;
-        &:focus {
-            border: 1px solid var(--shakespeare);
+  }
+}
+
+.inputFileContainer {
+  @extend .form;
+  input {
+    display: none;
+  }
+  label {
+    position: relative;
+    color: var(--white);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    height: 6rem;
+    width: 6rem;
+    background: #fff url("/01.jpg") no-repeat center center / cover;
+    &:hover {
+        .iconContainer {
+            background-color: var(--cloudburst-light);
         }
     }
+  }
 }

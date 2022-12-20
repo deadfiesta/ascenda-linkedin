@@ -3,8 +3,9 @@ import html2canvas from "html2canvas";
 import Reports from "./components/Reports";
 import ThemeToggle from "./components/subcomponents/ThemeToggle";
 import InputField from "./components/subcomponents/InputField";
-import CameraIcon from "./components/subcomponents/CameraIcon";
+import CameraIcon from "./components/subcomponents/IconCamera";
 import styles from "./styles/App.module.scss";
+import InputFile from "./components/subcomponents/InputFile";
 
 function App() {
   const captureRef = useRef(null);
@@ -17,8 +18,12 @@ function App() {
   const [theme, setTheme] = useState("light");
   const [open, setOpen] = useState(false);
 
+  const [imgSrc, setImgSrc] = useState("/01.jpg");
+
   const capture = () => {
-    html2canvas(captureRef.current).then((canvas) => {
+    html2canvas(captureRef.current, {
+      quality: .95,
+    }).then((canvas) => {
       setOpen(!open);
       resultRef.current.appendChild(canvas);
     });
@@ -34,14 +39,17 @@ function App() {
       <div className={styles.mainContainer}>
         <ThemeToggle value={theme} onChange={setTheme} />
         <div ref={captureRef} className={styles.previewContainer}>
-          <Reports theme={theme} title={title} guide={guide} />
+          <Reports theme={theme} image={imgSrc} title={title} guide={guide} />
         </div>
-        <InputField
-          title={title}
-          changeTitle={setTitle}
-          guide={guide}
-          changeGuide={setGuide}
-        />
+        <div className={styles.formContainer}>
+          <InputFile img={imgSrc} changeImg={setImgSrc} />
+          <InputField
+            title={title}
+            changeTitle={setTitle}
+            guide={guide}
+            changeGuide={setGuide}
+          />
+        </div>
         <button onClick={capture}>
           Export <CameraIcon />
         </button>
