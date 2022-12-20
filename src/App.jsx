@@ -1,11 +1,14 @@
 import { useState, useRef } from "react";
 import html2canvas from "html2canvas";
+import { saveAsPng, saveAsJpeg } from "save-html-as-image";
 import Reports from "./components/Reports";
 import ThemeToggle from "./components/subcomponents/ThemeToggle";
 import InputField from "./components/subcomponents/InputField";
+import IconDownload from "./components/subcomponents/IconDownload";
 import CameraIcon from "./components/subcomponents/IconCamera";
-import styles from "./styles/App.module.scss";
+import IconClose from "./components/subcomponents/IconClose";
 import InputFile from "./components/subcomponents/InputFile";
+import styles from "./styles/App.module.scss";
 
 function App() {
   const captureRef = useRef(null);
@@ -17,20 +20,29 @@ function App() {
   );
   const [theme, setTheme] = useState("light");
   const [open, setOpen] = useState(false);
-
   const [imgSrc, setImgSrc] = useState("./01.jpg");
 
+  const [download, setDownload] = useState(false);
+
+  //* Using html2canvas
   const capture = () => {
+    setOpen(true);
     html2canvas(captureRef.current, {
-      quality: .95,
+      quality: 0.95,
     }).then((canvas) => {
-      setOpen(!open);
-      resultRef.current.appendChild(canvas);
+      setDownload(true);
+      resultRef.current.prepend(canvas);
     });
   };
 
+  //* Using save-html-to-image for saving image
+  const save = () => {
+    saveAsPng(captureRef.current, { filename: "ascenda", printDate: false });
+  };
+
   const remove = () => {
-    setOpen(!open);
+    setOpen(false);
+    setDownload(false);
     document.querySelector("canvas").remove();
   };
 
@@ -62,6 +74,15 @@ function App() {
               : styles.resultContainer
           }
         >
+          <div onClick={remove} className={styles.closeContainer}>
+            <IconClose />
+          </div>
+          {download && (
+            <button onClick={save}>
+              Download
+              <IconDownload />
+            </button>
+          )}
           <div onClick={remove} className={styles.outside} />
         </div>
       </div>

@@ -7,11 +7,22 @@ const Reports = ({ style, theme, title, guide, image }) => {
     default:
     case 1:
       return (
-        <div className={theme === "light" ? styles.light : styles.dark}>
+        <div
+          className={
+            theme === "light"
+              ? styles.light
+              : theme === "dark"
+              ? styles.dark
+              : styles.shakespeare
+          }
+        >
           <div className={styles.wrapper}>
             <AscendaLogo />
             <div className={styles.contentContainer}>
-              <div className={styles.imageContainer} style={{ backgroundImage: `url(${image})` }} />
+              <div
+                className={styles.imageContainer}
+                style={{ backgroundImage: `url(${image})` }}
+              />
               <div className={styles.textContainer}>
                 <div className={styles.guide}>{guide}</div>
                 <h3>{title}</h3>
@@ -33,5 +44,5 @@ Reports.defaultProps = {
   style: 1,
   title: "Article title goes here lorem ipsum dolor",
   guide: "guide",
-  imgSrc: "./01.jpg"
+  imgSrc: "./01.jpg",
 };

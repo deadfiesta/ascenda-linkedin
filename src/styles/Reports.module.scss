@@ -1,6 +1,7 @@
 @import "./variables";
 
 %transition {
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
@@ -23,7 +24,6 @@ h3 {
 
 .light {
   @extend %transition;
-  display: inline-block;
   color: var(--cloudburst-deep);
   background-color: var(--white);
   svg {
@@ -33,11 +33,19 @@ h3 {
 
 .dark {
   @extend %transition;
-  display: inline-block;
   color: var(--white);
   background-color: var(--cloudburst-deep);
   svg {
     fill: var(--white);
+  }
+}
+
+.shakespeare {
+  @extend %transition;
+  @extend .dark;
+  background-color: var(--shakespeare);
+  .guide {
+    color: var(--white);
   }
 }
 
@@ -49,6 +57,7 @@ h3 {
   font-weight: 400;
   @extend %words;
   -webkit-line-clamp: 2;
+  transition: all 0.3s ease;
 }
 
 .wrapper {
@@ -66,7 +75,6 @@ h3 {
   gap: 45px;
   align-items: flex-end;
   h3 {
-    min-height: 168px;
     max-width: 400px;
     word-break: break-word;
     @extend %words;
@@ -78,6 +86,9 @@ h3 {
     gap: 18px;
   }
   .imageContainer {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
     width: 167px;
     height: 230px;
     background: #fff url("/01.jpg") no-repeat center center / cover;

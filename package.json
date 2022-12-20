@@ -11,7 +11,8 @@
   "dependencies": {
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "save-html-as-image": "^1.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

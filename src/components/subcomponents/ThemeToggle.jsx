@@ -19,6 +19,14 @@ const ThemeToggle = ({ value, onChange }) => {
         name="theme"
       />
       <label htmlFor="dark" />
+      <input
+        checked={value === "shakespare" ? true : false}
+        onChange={(e) => onChange(e.target.id)}
+        type="radio"
+        id="shakespare"
+        name="theme"
+      />
+      <label htmlFor="shakespare" />
     </div>
   );
 };
