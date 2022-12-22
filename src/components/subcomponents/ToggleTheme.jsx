@@ -1,6 +1,7 @@
 import styles from '../../styles/ThemeToggle.module.scss';
 
 const ThemeToggle = ({ value, onChange }) => {
+  
   return (
     <div className={styles.themeToggleContainer}>
       <input

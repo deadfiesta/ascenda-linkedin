@@ -12,6 +12,14 @@
   overflow: hidden;
 }
 
+%lineclamp {
+  -webkit-line-clamp: 3;
+}
+
+%padding {
+  padding: 38px 40px;
+}
+
 h2 {
   font-size: 42px;
   line-height: 62px;
@@ -20,9 +28,22 @@ h2 {
 h3 {
   font-size: 38px;
   line-height: 56px;
+  word-break: break-word;
+  @extend %words;
+  @extend %lineclamp;
+}
+
+.wrapper {
+  @extend %padding;
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .light {
+  @extend .wrapper;
   @extend %transition;
   color: var(--cloudburst-deep);
   background-color: var(--white);
@@ -32,6 +53,7 @@ h3 {
 }
 
 .dark {
+  @extend .wrapper;
   @extend %transition;
   color: var(--white);
   background-color: var(--cloudburst-deep);
@@ -41,6 +63,7 @@ h3 {
 }
 
 .shakespeare {
+  @extend .wrapper;
   @extend %transition;
   @extend .dark;
   background-color: var(--shakespeare);
@@ -60,25 +83,13 @@ h3 {
   transition: all 0.3s ease;
 }
 
-.wrapper {
-  width: 774px;
-  height: 406px;
-  padding: 38px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.contentContainer {
+.contentContainer__1 {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 45px;
   align-items: flex-end;
   h3 {
     max-width: 400px;
-    word-break: break-word;
-    @extend %words;
-    -webkit-line-clamp: 3;
   }
   .textContainer {
     display: flex;
@@ -93,4 +104,52 @@ h3 {
     height: 230px;
     background: #fff url("/01.jpg") no-repeat center center / cover;
   }
+}
+
+.contentContainer__2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: 100%;
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+  }
+  %max {
+    max-width: 480px;
+  }
+  .guide {
+    @extend %max;
+    text-align: center;
+  }
+
+  h3 {
+    text-align: center;
+    @extend %max;
+  }
+  .arrowContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 20px;
+    @extend %padding;
+  }
+  .line {
+    stroke: var(--flamingo);
+    stroke-width: 2px;
+  }
+}
+
+.contentContainer__3 {
 }

@@ -2,13 +2,14 @@ import { useState, useRef } from "react";
 import html2canvas from "html2canvas";
 import { saveAsPng } from "save-html-as-image";
 import Reports from "./components/Reports";
-import ThemeToggle from "./components/subcomponents/ThemeToggle";
+import ThemeToggle from "./components/subcomponents/ToggleTheme";
 import InputField from "./components/subcomponents/InputField";
 import IconDownload from "./components/subcomponents/IconDownload";
 import CameraIcon from "./components/subcomponents/IconCamera";
 import IconClose from "./components/subcomponents/IconClose";
 import InputFile from "./components/subcomponents/InputFile";
 import styles from "./styles/App.module.scss";
+import ToggleStyle from "./components/subcomponents/ToggleStyle";
 
 function App() {
   const captureRef = useRef(null);
@@ -19,6 +20,9 @@ function App() {
     "Article title goes here lorem ipsum dolor"
   );
   const [theme, setTheme] = useState("light");
+  const [style, setStyle] = useState(2);
+  const [noOfStyles, setNoOfStyles] = useState(6);
+
   const [open, setOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState("./01.jpg");
 
@@ -28,6 +32,7 @@ function App() {
   const capture = () => {
     setOpen(true);
     html2canvas(captureRef.current, {
+      scale: 2,
       quality: 0.95,
     }).then((canvas) => {
       setDownload(true);
@@ -37,7 +42,11 @@ function App() {
 
   //* Using save-html-to-image for saving image
   const save = () => {
-    saveAsPng(captureRef.current, { filename: "ascenda", printDate: false }, { quality: .95 });
+    saveAsPng(
+      captureRef.current,
+      { filename: "ascenda", printDate: false },
+      { quality: 0.95 }
+    );
   };
 
   const remove = () => {
@@ -49,19 +58,38 @@ function App() {
   return (
     <div className="App">
       <div className={styles.mainContainer}>
-        <ThemeToggle value={theme} onChange={setTheme} />
-        <div ref={captureRef} className={styles.previewContainer}>
-          <Reports theme={theme} image={imgSrc} title={title} guide={guide} />
-        </div>
-        <div className={styles.formContainer}>
-          <InputFile img={imgSrc} changeImg={setImgSrc} />
-          <InputField
-            title={title}
-            changeTitle={setTitle}
-            guide={guide}
-            changeGuide={setGuide}
-          />
-        </div>
+        <section id="preview" className={styles.previewContainer}>
+          <div className={`${styles.wrapper} style${style}`} ref={captureRef}>
+            <Reports
+              style={style}
+              theme={theme}
+              image={imgSrc}
+              title={title}
+              guide={guide}
+            />
+          </div>
+        </section>
+        <section id="form">
+          <div className={styles.wrapper}>
+            <div className={styles.formContainer}>
+              <div className={styles.toggleContainer}>
+                <ToggleStyle
+                  no={noOfStyles}
+                  style={style}
+                  setStyle={setStyle}
+                />
+                <ThemeToggle value={theme} onChange={setTheme} />
+              </div>
+              <InputFile img={imgSrc} changeImg={setImgSrc} />
+              <InputField
+                title={title}
+                changeTitle={setTitle}
+                guide={guide}
+                changeGuide={setGuide}
+              />
+            </div>
+          </div>
+        </section>
         <button onClick={capture}>
           Export <CameraIcon />
         </button>

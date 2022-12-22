@@ -1,10 +1,8 @@
 @import "./variables";
 
 .themeToggleContainer {
-  width: 100%;
   display: flex;
-  gap: 0.75rem;
-  justify-content: center;
+  gap: .75rem;
   input {
     appearance: none;
   }
