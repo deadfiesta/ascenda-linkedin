@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import html2canvas from "html2canvas";
-import { saveAsPng, saveAsJpeg } from "save-html-as-image";
+import { saveAsPng } from "save-html-as-image";
 import Reports from "./components/Reports";
 import ThemeToggle from "./components/subcomponents/ThemeToggle";
 import InputField from "./components/subcomponents/InputField";
@@ -37,7 +37,7 @@ function App() {
 
   //* Using save-html-to-image for saving image
   const save = () => {
-    saveAsPng(captureRef.current, { filename: "ascenda", printDate: false });
+    saveAsPng(captureRef.current, { filename: "ascenda", printDate: false }, { quality: .95 });
   };
 
   const remove = () => {
