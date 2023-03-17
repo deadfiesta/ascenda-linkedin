@@ -21,11 +21,15 @@
 }
 
 h2 {
+  position: relative;
+  z-index: 5;
   font-size: 42px;
   line-height: 62px;
 }
 
 h3 {
+  position: relative;
+  z-index: 5;
   font-size: 38px;
   line-height: 56px;
   word-break: break-word;
@@ -149,7 +153,4 @@ h3 {
     stroke: var(--flamingo);
     stroke-width: 2px;
   }
-}
-
-.contentContainer__3 {
 }
